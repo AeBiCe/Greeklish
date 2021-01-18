@@ -18,10 +18,15 @@ english = "AAVGDEEZII88IIIKLMNXOOPRSTYYYFXOOaavgdeeziiiiiiklmnxooprsstuuuufxoo?"
 
 
 directory = input("Enter directory:")
-os.chdir(directory) # Change to dir to input
+if os.path.isdir(directory): # If directory exists
+    os.chdir(directory) # Change dir to input
+else:
+    print("\nInvalid directory!\n")
+    while not os.path.isdir(directory):
+        directory = input("Enter a new directory:")
 
+os.chdir(directory) # Change dir to input
 files = os.listdir(os.getcwd()) # Get files in directory
-
 
 for file in files:
     table = file.maketrans(greek, english)  # Map characters
