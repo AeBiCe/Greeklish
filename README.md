@@ -6,9 +6,7 @@ Enter the directory with the files you wish to rename. The program will then ite
 and change filename to greek. Non-greek names will not be affected.
 
 ## Known issues
-* No error handling	
 * Letter "ψ" is currently not supported
 * Letter 'θ' is represented by '8' instead of 'th'
-* Files in subfolders are not translated
 
 
