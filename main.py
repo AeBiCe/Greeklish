@@ -1,5 +1,6 @@
 import os
 import time
+import GLdict as gl
 
 print('''
    _____               _    _ _     _     
@@ -13,28 +14,23 @@ print('''
 
 ''')
 
-# Alphabet mapping
-greek = "ΑΆΒΓΔΕΈΖΗΉΘθΙΊΪΚΛΜΝΞΟΌΠΡΣΤΥΎΫΦΧΩΏαάβγδεέζηήιίϊΐκλμνξοόπρσςτυύϋΰφχωώ;" 
-english = "AAVGDEEZII88IIIKLMNXOOPRSTYYYFXOOaavgdeeziiiiiiklmnxooprsstuuuufxoo?"
-
 subfolders   = ''
 choice_alt  = ['Y','y','N','n']
 directory   = input("Enter directory: ")
 
-def greeklish(file):
-    table = file.maketrans(greek, english) # Map characters
+def translate(file):
     try:
-        os.rename((os.path.join(subdir,file)),os.path.join(subdir,file.translate(table))) # Rename file
+        os.rename((os.path.join(subdir,file)),os.path.join(subdir,gl.greeklish(file))) # Rename file
     except PermissionError: # Skips files with special permissions
         pass
 
-while not os.path.isdir(directory):
+while not os.path.isdir(directory): # Invalid directory
     directory = input("\nInvalid directory!\nEnter a new directory: ")
 
 os.chdir(directory) # Change dir to input
 files = os.listdir(os.getcwd()) # Get files in directory
 
-while subfolders not in choice_alt:
+while subfolders not in choice_alt: #if input not Y/N
     subfolders = input("Translate subfolders (Y/N): ")
 
 if subfolders == 'Y' or subfolders == 'y':
@@ -42,7 +38,7 @@ if subfolders == 'Y' or subfolders == 'y':
     start = time.time()
     for subdir, dirs, files in os.walk(directory):
         for file in files:
-            greeklish(file)
+            translate(file)
     end = time.time()
 
 else:
@@ -50,8 +46,7 @@ else:
     print("[Subfolders excluded]")
     start = time.time()
     for file in files:
-        greeklish(file)
+        translate(file)
     end = time.time()
 
 print("\nTranslation complete! [",round((end-start),3),"seconds ]")
-
