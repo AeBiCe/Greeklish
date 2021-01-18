@@ -17,7 +17,16 @@ print('''
 greek = "ΑΆΒΓΔΕΈΖΗΉΘθΙΊΪΚΛΜΝΞΟΌΠΡΣΤΥΎΫΦΧΩΏαάβγδεέζηήιίϊΐκλμνξοόπρσςτυύϋΰφχωώ;" 
 english = "AAVGDEEZII88IIIKLMNXOOPRSTYYYFXOOaavgdeeziiiiiiklmnxooprsstuuuufxoo?"
 
-directory = input("Enter directory: ")
+subfolders   = ''
+choice_alt  = ['Y','y','N','n']
+directory   = input("Enter directory: ")
+
+def greeklish(file):
+    table = file.maketrans(greek, english) # Map characters
+    try:
+        os.rename((os.path.join(subdir,file)),os.path.join(subdir,file.translate(table))) # Rename file
+    except PermissionError: # Skips files with special permissions
+        pass
 
 while not os.path.isdir(directory):
     directory = input("\nInvalid directory!\nEnter a new directory: ")
@@ -25,18 +34,24 @@ while not os.path.isdir(directory):
 os.chdir(directory) # Change dir to input
 files = os.listdir(os.getcwd()) # Get files in directory
 
+while subfolders not in choice_alt:
+    subfolders = input("Translate subfolders (Y/N): ")
 
-start = time.time()
-for file in files:
-    table = file.maketrans(greek, english) # Map characters
-    try:
-        os.rename(file,file.translate(table)) # Rename file
-    except PermissionError: # Skips files with special permissions
-        pass
-end = time.time()
+if subfolders == 'Y' or subfolders == 'y':
+    print("[Subfolders included]")
+    start = time.time()
+    for subdir, dirs, files in os.walk(directory):
+        for file in files:
+            greeklish(file)
+    end = time.time()
+
+else:
+    subdir = ""
+    print("[Subfolders excluded]")
+    start = time.time()
+    for file in files:
+        greeklish(file)
+    end = time.time()
 
 print("\nTranslation complete! [",round((end-start),3),"seconds ]")
-                                          
-                                          
-
 
