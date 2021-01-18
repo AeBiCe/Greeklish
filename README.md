@@ -2,11 +2,14 @@
 Renames Greek filenames to "Greeklish"
 
 ## How to use
-Enter the directory with the files you wish to rename. The program will then iterate through the directory
-and change filename to greek. Non-greek names will not be affected.
+clone or download repo and run `main.py`.
+Enter the directory path with the files you wish to rename. The program will then recursively iterate through the directory
+and translate files with Greek filenames to Greeklish. Optionally it can also translate file in subfolders as well. 
 
-## Known issues
-* Letter "ψ" is currently not supported
-* Letter 'θ' is represented by '8' instead of 'th'
+**Note:** Non-Greek names will not be affected.
+
+## Possible Updates
+* Progress bar
+* GUI
 
 
