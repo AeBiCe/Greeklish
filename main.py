@@ -1,4 +1,5 @@
 import os
+import time
 
 print('''
    _____               _    _ _     _     
@@ -16,23 +17,25 @@ print('''
 greek = "ΑΆΒΓΔΕΈΖΗΉΘθΙΊΪΚΛΜΝΞΟΌΠΡΣΤΥΎΫΦΧΩΏαάβγδεέζηήιίϊΐκλμνξοόπρσςτυύϋΰφχωώ;" 
 english = "AAVGDEEZII88IIIKLMNXOOPRSTYYYFXOOaavgdeeziiiiiiklmnxooprsstuuuufxoo?"
 
+directory = input("Enter directory: ")
 
-directory = input("Enter directory:")
-if os.path.isdir(directory): # If directory exists
-    os.chdir(directory) # Change dir to input
-else:
-    print("\nInvalid directory!\n")
-    while not os.path.isdir(directory):
-        directory = input("Enter a new directory:")
+while not os.path.isdir(directory):
+    directory = input("\nInvalid directory!\nEnter a new directory: ")
 
 os.chdir(directory) # Change dir to input
 files = os.listdir(os.getcwd()) # Get files in directory
 
-for file in files:
-    table = file.maketrans(greek, english)  # Map characters
-    os.rename(file,file.translate(table))   # Rename
 
-print("Translation complete!")
+start = time.time()
+for file in files:
+    table = file.maketrans(greek, english) # Map characters
+    try:
+        os.rename(file,file.translate(table)) # Rename file
+    except PermissionError: # Skips files with special permissions
+        pass
+end = time.time()
+
+print("\nTranslation complete! [",round((end-start),3),"seconds ]")
                                           
                                           
 
