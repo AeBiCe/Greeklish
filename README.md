@@ -8,6 +8,10 @@ and translate files with Greek filenames to Greeklish. Optionally it can also tr
 
 **Note:** Non-Greek names will not be affected.
 
+## Knwon Issues
+* Can only translate files on NTFS drives
+* Can't translate files on root directory
+
 ## Possible Updates
 * Progress bar
 * GUI
