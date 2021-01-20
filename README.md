@@ -1,5 +1,5 @@
 # Greeklish
-Renames Greek filenames to "Greeklish"
+Renames Greek filenames to "Greeklish".
 
 ## How to use
 Clone or download repo and run `main.py`.
@@ -10,7 +10,6 @@ and translate files with Greek filenames to Greeklish. Optionally it can also tr
 
 ## Knwon Issues
 * Can only translate files on NTFS drives
-* Can't translate files on root directory
 
 ## Possible Updates
 * Progress bar
