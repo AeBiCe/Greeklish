@@ -1,7 +1,7 @@
 # Greeklish
 Renames Greek filenames to "Greeklish".
 
-There are currently two types of Greeklish, terminal based and a gui. For more information about the gui check the [/gui](gui) folder. 
+There are currently two types of Greeklish, terminal based and a gui. For more information about the graphical version check the [gui](gui) folder. 
 
 ## How to use
 Clone or download repo and run `main.py` for terminal version. Alternatively run `Greeklish.exe` for the gui.
