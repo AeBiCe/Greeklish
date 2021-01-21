@@ -13,20 +13,26 @@ subfolders  = False
 directory   = ""
 files       = ""
 
+def set_dir(directory):
+    global files
+    os.chdir(directory) # Change to entry
+    files = os.listdir(os.getcwd()) # Get files in directory
+
+
 def clear_text(event):
     entry.delete(0,"end")
+    translate_button.config(state="normal")
     return None
 
-def set_dir(): # todo: error handling when entry isinvalid or empty
+def set_entry(): # todo: error handling when entry isinvalid or empty
     global directory
-    global files
     entry.config(state="normal")
     directory = filedialog.askdirectory()
     entry.delete(0,"end") # Clear entry field
     entry.insert(0,directory) # Show chosen directory
-    os.chdir(directory) # Change to entry
-    files = os.listdir(os.getcwd()) # Get files in directory
+    set_dir(directory)
     entry.config(state="readonly")
+    translate_button.config(state="normal")
 
 def alert(title,text):
     messagebox.showinfo(title, text)
@@ -47,6 +53,7 @@ def translate(file,subdir):
 def GLrename():
     global directory
     global files
+    set_dir(entry.get())
     if subfolders:
         for subdir, dirs, sub_files in os.walk(directory):
             for file in sub_files:
@@ -64,15 +71,16 @@ entry.insert(0,"Enter directory...",)
 entry.bind("<Button-1>", clear_text)
 entry.grid(row=0,column=0,columnspan=3,padx=6,pady=6)
 
-browse_button = tk.Button(root, text="Browse",command=lambda: set_dir())
+browse_button = tk.Button(root, text="Browse",command=lambda: set_entry())
 browse_button.grid(row=1,column=0,pady=3)
 
-translate_button = tk.Button(root, text="Translate",command=lambda: GLrename())
+translate_button = tk.Button(root, text="Translate",state="disabled",command=lambda: GLrename())
 translate_button.grid(row=1,column=1,padx=0)
 
 var = tk.BooleanVar()
-translate_button2 = tk.Checkbutton(root, text="Subfolders",variable=var,command=set_subfolder)
-translate_button2.grid(row=1,column=2)
+check = tk.Checkbutton(root, text="Subfolders",variable=var,command=set_subfolder)
+check.grid(row=1,column=2)
+
 
 
 if __name__ == "__main__":
