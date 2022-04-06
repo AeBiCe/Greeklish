@@ -1,11 +1,8 @@
-<div style="margin-left: auto;
 
-![Greeklish](/img/logo.png)
+# <img src="/img/logo.png" alt="drawing" width="400"/>
 
-</div>
-Renames Greek filenames to "Greeklish".
-
-There are currently two types of Greeklish, terminal based and a gui. For more information about the graphical version check the [gui](gui) folder. 
+## Objective
+Rename Greek filenames to "Greeklish".
 
 ## How to use
 Clone or download repo and run `main.py` for terminal version. Alternatively run `Greeklish.exe` for the gui.
