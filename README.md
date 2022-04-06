@@ -1,4 +1,8 @@
-# Greeklish
+<div style="margin-left: auto;
+
+![Greeklish](/img/logo.png)
+
+</div>
 Renames Greek filenames to "Greeklish".
 
 There are currently two types of Greeklish, terminal based and a gui. For more information about the graphical version check the [gui](gui) folder. 
